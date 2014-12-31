@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8" />
-        <title>享受轻松愉快的人生 - websites</title>
+        <title>VC6.0命令行编译及使用makefile编译的方法</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 
         <!--[if IE]>
@@ -17,10 +17,15 @@
                     <li class="active"><a href="/category/websites.html">websites</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/Windows.html" rel="bookmark"
+           title="Permalink to VC6.0命令行编译及使用makefile编译的方法">VC6.0命令行编译及使用makefile编译的方法</a></h1>
+    </header>
 
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/Windows.html">VC6.0命令行编译及使用makefile编译的方法</a></h1>
+    <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-12-27T00:00:00+01:00">
                 Published: 星期六 27 十二月 2014
@@ -31,7 +36,7 @@
         </address>
 <p>In <a href="/category/websites.html">websites</a>. </p>
 <p>tags: <a href="/tag/windows.html">Windows</a> </p>
-</footer><!-- /.post-info --><h2>VC6.0命令行编译及使用makefile编译的方法</h2>
+</footer><!-- /.post-info -->      <h2>VC6.0命令行编译及使用makefile编译的方法</h2>
 <p>转载、来源：http://blog.csdn.net/cs_21cn/article/details/8015596</p>
 <p>VC6是挺经典的一个IDE，但有时编译比较慢。作为一个典型的程序员，我总想让电脑多做点事，自己少点事。编译软件也一样，又是能够执行后不管了，让程序自己慢慢编译，人可以做其他事情，或者直接写成批处理，自动的一个个慢慢执行编译就好了。所以一直想探索一下vc6环境怎么使用命令行编译，以及vc6怎么使用makefile编译。</p>
 <p>今天终于找到办法！虽然还停留在初浅的层面，但还是可以做到命令行自动编译了。所以写下来既是分享，也供自己以后查阅。</p>
@@ -100,149 +105,11 @@
 <p>NMAKE /f "maintest.mak"CFG="maintest - Win32 Debug" /y /d</p>
 <p>NMAKE /f "maintest.mak"CFG="maintest - Win32 Release" /y /d</p>
 <p>注意这里的CFG="maintest- Win32 Debug"区分大小写的，而msdev的/make "all - win32 release"是不区分大小写的。</p>
-<p>如果你有兴趣继续探索，可以使用记事本打开dsp和mak文件看一下。</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<p>如果你有兴趣继续探索，可以使用记事本打开dsp和mak文件看一下。</p>
+    </div><!-- /.entry-content -->
 
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/web.html" rel="bookmark"
-                           title="Permalink to Web后端技术">Web后端技术</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-12-26T00:00:00+01:00">
-                Published: 星期五 26 十二月 2014
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
-        </address>
-<p>In <a href="/category/websites.html">websites</a>. </p>
-<p>tags: <a href="/tag/web.html">web</a> </p>
-</footer><!-- /.post-info -->                
-                <a class="readmore" href="/web.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/c/c++.html" rel="bookmark"
-                           title="Permalink to study plan">study plan</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-12-16T00:00:00+01:00">
-                Published: 星期二 16 十二月 2014
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
-        </address>
-<p>In <a href="/category/websites.html">websites</a>. </p>
-<p>tags: <a href="/tag/cc.html">c/c++</a> </p>
-</footer><!-- /.post-info -->                
-                <a class="readmore" href="/c/c++.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/Nginx.html" rel="bookmark"
-                           title="Permalink to Nginx Note">Nginx Note</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-12-15T00:00:00+01:00">
-                Published: 星期一 15 十二月 2014
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
-        </address>
-<p>In <a href="/category/websites.html">websites</a>. </p>
-<p>tags: <a href="/tag/nginx.html">Nginx</a> </p>
-</footer><!-- /.post-info -->                
-                <a class="readmore" href="/Nginx.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/books.html" rel="bookmark"
-                           title="Permalink to 书柜">书柜</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-12-15T00:00:00+01:00">
-                Published: 星期一 15 十二月 2014
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
-        </address>
-<p>In <a href="/category/websites.html">websites</a>. </p>
-<p>tags: <a href="/tag/books.html">books</a> </p>
-</footer><!-- /.post-info -->                
-                <a class="readmore" href="/books.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/tools.html" rel="bookmark"
-                           title="Permalink to 资料收集">资料收集</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-12-09T00:00:00+01:00">
-                Published: 星期二 09 十二月 2014
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
-        </address>
-<p>In <a href="/category/websites.html">websites</a>. </p>
-<p>tags: <a href="/tag/tools.html">tools</a> </p>
-</footer><!-- /.post-info -->                
-                <a class="readmore" href="/tools.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/websites.html" rel="bookmark"
-                           title="Permalink to 资料收集">资料收集</a></h1>
-                </header>
-
-                <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2014-12-09T00:00:00+01:00">
-                Published: 星期二 09 十二月 2014
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
-        </address>
-<p>In <a href="/category/websites.html">websites</a>. </p>
-<p>tags: <a href="/tag/websites.html">websites</a> </p>
-</footer><!-- /.post-info -->                
-                <a class="readmore" href="/websites.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
-                </ol><!-- /#posts-list -->
-<p class="paginator">
-    Page 1 / 1
-</p>
-                </section><!-- /#content -->
+  </article>
+</section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>

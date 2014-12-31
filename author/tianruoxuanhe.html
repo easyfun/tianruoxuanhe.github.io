@@ -14,15 +14,128 @@
         <header id="banner" class="body">
                 <h1><a href="/">享受轻松愉快的人生 </a></h1>
                 <nav><ul>
-                    <li><a href="/category/books.html">books</a></li>
-                    <li><a href="/category/study-plan.html">study plan</a></li>
                     <li><a href="/category/websites.html">websites</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/c/c++.html">study plan</a></h1>
+                    <h1 class="entry-title"><a href="/Windows.html">VC6.0命令行编译及使用makefile编译的方法</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2014-12-27T00:00:00+01:00">
+                Published: 星期六 27 十二月 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
+        </address>
+<p>In <a href="/category/websites.html">websites</a>. </p>
+<p>tags: <a href="/tag/windows.html">Windows</a> </p>
+</footer><!-- /.post-info --><h2>VC6.0命令行编译及使用makefile编译的方法</h2>
+<p>转载、来源：http://blog.csdn.net/cs_21cn/article/details/8015596</p>
+<p>VC6是挺经典的一个IDE，但有时编译比较慢。作为一个典型的程序员，我总想让电脑多做点事，自己少点事。编译软件也一样，又是能够执行后不管了，让程序自己慢慢编译，人可以做其他事情，或者直接写成批处理，自动的一个个慢慢执行编译就好了。所以一直想探索一下vc6环境怎么使用命令行编译，以及vc6怎么使用makefile编译。</p>
+<p>今天终于找到办法！虽然还停留在初浅的层面，但还是可以做到命令行自动编译了。所以写下来既是分享，也供自己以后查阅。</p>
+<h3>一、VC6命令行编译</h3>
+<p>VC6对应的可执行文件是msdev，在命令行窗口（以下简称cmd）中输入msdev /? 回车就能看到msdev的命令行参数帮助了（如果提示未知命令，那么请使用vc6安装目录下的VCVARS32.BAT设置环境）。帮助信息如下：</p>
+<p>F:\VC_Code\maintest&gt;msdev/?</p>
+<p>Usage:</p>
+<p>MSDEV [myprj.dsp|mywksp.dsw]  - load project/workspace</p>
+<div class="highlight"><pre>    [&lt;filename&gt;]            - load source file
+
+    /?                      - display usageinformation
+
+    /EX &lt;macroname&gt;         - execute a VBScript macro
+
+    /OUT &lt;filename&gt;         - redirect command line output to afile
+
+    /USEENV                 - ignoretools.options.directories settings
+
+    /MAKE [&lt;target&gt;] [...]  - build specified target(s)
+
+          [&lt;project&gt; -&lt;platform&gt; &lt;configname&gt;]
+
+          [[&lt;project&gt;|ALL] -[DEBUG|RELEASE|ALL]]
+
+          /CLEAN            - delete intermediate files butdon&#39;t build
+
+          /REBUILD          - clean and build
+
+          /NORECURSE        - don&#39;t build dependent projects
+</pre></div>
+
+
+<p>下面逐个参数论述：</p>
+<p>[myprj.dsp|mywksp.dsw]  - load project/workspace</p>
+<p>[<filename>]            - load source file</p>
+<p>/?                      - display usage information</p>
+<p>/EX<macroname>         - execute aVBScript macro</p>
+<p>/USEENV                 - ignoretools.options.directories settings</p>
+<p>这几个选项跟本文想论述的内容关系不大，也比较好懂，有兴趣的人自己动手试一下就知道了。</p>
+<p>/OUT<filename>         - redirectcommand line output to a file 把输入信息重定向到文件中，可以跟编译指令结合，保存编译过程的输出信息，有利于确认编译成功与否，特别是使用批处理批量编译时。</p>
+<p>/MAKE 就是主角了，就是编译指令了。下面以几个示例来说明吧：</p>
+<h4>（1）编译工作区文件（dsw）的项目</h4>
+<p>msdev maintest.dsw/make "all - win32 debug" /out f:\result.txt</p>
+<p>maintest.dsw 工作区文件</p>
+<p>/make 编译指令</p>
+<p>all 编译所有项目（project），如果工作区有多个项目，也可以指定只编译特定项目，可以使用记事本打开dsw文件，可以看到里面包含的各个项目文件。</p>
+<p>win32 平台（platform），vc6运行基本也就是win32平台了，所以一般该参数可以省略。</p>
+<p>debug 编译设置项（configname），可以在DEBUG|RELEASE|ALL选择</p>
+<p>/out f:\result.txt 重定向输出，把编译过程的信息输出到f:\result.txt中。</p>
+<p>所以上面的命令行的意思就是：把maintest.dsw工作区里的所有项目编译debug版的产品，并把编译过程的信息输出到f:\result.txt中。</p>
+<p>据此可以容易理解下面几个命令行的意思吧：</p>
+<p>msdev maintest.dsw /make "all - win32release"  –所有项目编译release版</p>
+<p>msdev maintest.dsw /make "all -all"  --所有项目编译debug和release版</p>
+<p>msdev maintest.dsw /make "maintest -release" –编译工作区中的maintest项目的release版</p>
+<h4>（2）编译项目文件（dsp）的项目</h4>
+<p>msdev maintest.dsp/make "all - win32 debug" /out f:\result.txt</p>
+<p>maintest.dsp 项目配置文件</p>
+<p>其他参数都跟编译工作区文件（dsw）的项目一样，注意其他的all，一直保持all就行了，因为项目配置文件里面也就只包含一个项目了。</p>
+<p>/CLEAN            - delete intermediate files butdon't build</p>
+<p>/REBUILD          - clean and build</p>
+<p>跟图形化VC6 IDE中的BUILD-&gt;CLEAN和BUILD-&gt;REBUILD ALL意义是一样的，这里就不赘述了。</p>
+<h3>二、VC6使用makefile编译</h3>
+<p>VC6 IDE带的makefile编译程序是nmake，也可以在cmd中输入nmake /?获取详细的帮助信息，因为我自己没有一一使用过，所以也就不一一论述了。下面只提供一个使用的方法：</p>
+<p>（1）在VC6图形化界面上打开一个项目，然后执行Project-&gt;Export Makefile，会在项目的目录下生成mak和dep两个文件，这就是项目配置的makefile了。</p>
+<p>（2）然后使用如下命令行编译了：</p>
+<p>NMAKE /f "maintest.mak"CFG="maintest - Win32 Debug" /y /d</p>
+<p>NMAKE /f "maintest.mak"CFG="maintest - Win32 Release" /y /d</p>
+<p>注意这里的CFG="maintest- Win32 Debug"区分大小写的，而msdev的/make "all - win32 release"是不区分大小写的。</p>
+<p>如果你有兴趣继续探索，可以使用记事本打开dsp和mak文件看一下。</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/web.html" rel="bookmark"
+                           title="Permalink to Web后端技术">Web后端技术</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-12-26T00:00:00+01:00">
+                Published: 星期五 26 十二月 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
+        </address>
+<p>In <a href="/category/websites.html">websites</a>. </p>
+<p>tags: <a href="/tag/web.html">web</a> </p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/web.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/c/c++.html" rel="bookmark"
+                           title="Permalink to study plan">study plan</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2014-12-16T00:00:00+01:00">
                 Published: 星期二 16 十二月 2014
@@ -31,40 +144,34 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
         </address>
-<p>In <a href="/category/study-plan.html">study plan</a>. </p>
+<p>In <a href="/category/websites.html">websites</a>. </p>
 <p>tags: <a href="/tag/cc.html">c/c++</a> </p>
-</footer><!-- /.post-info --><p>c/c++已经使用三年，方方面面都有所了解，需要进一步提升。接下来的学习计划：</p>
-<ol>
-<li>内存管理,预先申请大段内存，切割成小片串成链表，用模版类</li>
-<li>深入数据结构</li>
-<li>学习stl源码，精通模版编程技术，理清各个容器的数据结构</li>
-<li>
-<p>多线程技术在高频运算下的性能优化</p>
-<ol>
-<li>生产者、消费者模式</li>
-<li>同步，事件、信号量、锁</li>
-<li>系统高级IO模型，windows下完成端口，linux下epoll......</li>
-<li>多线程异步处理模型，chorme有一套非常高效的模式，非常值得学习。请求分等级，请求队列，系统级IO模型。</li>
-</ol>
-</li>
-<li>
-<p>学习ffpython，打通c/c++与python混合编程</p>
-</li>
-<li>effective c++(写高性能的代码)</li>
-<li>c/c++ object modal</li>
-<li>设计模式</li>
-</ol>
-<p>丢掉IDE，使用VIM、makefile</p>
-<p>冷落VS，使用gcc，g++，用跨平台的解决方案</p>
-<p>高效，高品质，高性能</p>
-<p>服务端：linux</p>
-<p>桌面：windows，mac，ubantu</p>
-<p>移动：ios，anriod</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/c/c++.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/Nginx.html" rel="bookmark"
+                           title="Permalink to Nginx Note">Nginx Note</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2014-12-15T00:00:00+01:00">
+                Published: 星期一 15 十二月 2014
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
+        </address>
+<p>In <a href="/category/websites.html">websites</a>. </p>
+<p>tags: <a href="/tag/nginx.html">Nginx</a> </p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/Nginx.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
@@ -81,7 +188,7 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/tianruoxuanhe.html">tianruoxuanhe</a>
         </address>
-<p>In <a href="/category/books.html">books</a>. </p>
+<p>In <a href="/category/websites.html">websites</a>. </p>
 <p>tags: <a href="/tag/books.html">books</a> </p>
 </footer><!-- /.post-info -->                
                 <a class="readmore" href="/books.html">read more</a>
